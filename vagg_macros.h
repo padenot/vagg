@@ -190,9 +190,9 @@
 	static void trace_exit_handler()
 	{
     if (vagg_alloc_count) {
-      VAGG_LOG(VAGG_LOG_CRITICAL, "Alloc balance: %u. Memory leaks detected.", vagg_alloc_count);
+      VAGG_LOG(VAGG_LOG_CRITICAL, "Alloc balance: %zu. Memory leaks detected.", vagg_alloc_count);
     } else {
-      VAGG_LOG(VAGG_LOG_OK, "Alloc balance: %u. No memory leaks.", vagg_alloc_count);
+      VAGG_LOG(VAGG_LOG_OK, "Alloc balance: %zu. No memory leaks.", vagg_alloc_count);
     }
 		exit(0);
 	}
