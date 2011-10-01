@@ -62,11 +62,19 @@ VAGG_DELETE(int_array2);
 ```
 
 ## Compile time switches
+You can `#define` the following at compile time :
+
 - `VAGG_DEBUG`: turns on logging & assertions;
 - `VAGG_TEST`: turns on testing;
 - `VAGG_ASSERT_FATAL`: make assert kill the program;
 - `VAGG_COUNT_ALLOC`: enable alloc counting;
 - `VAGG_PRINT_ALLOC`: enable alloc logging.
+- `VAGG_LOG_LEVEL` : choose the log level between :
+  - `VAGG_LOG_FATAL`
+  - `VAGG_LOG_CRITICAL`
+  - `VAGG_LOG_WARNING`
+  - `VAGG_LOG_OK`
+  - `VAGG_LOG_DEBUG`
 
 ## Usage
 Assuming we use git, and we are inside our project directory :
