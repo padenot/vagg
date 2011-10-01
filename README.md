@@ -70,13 +70,16 @@ VAGG_DELETE(int_array2);
 
 ## Usage
 Assuming we use git, and we are inside our project directory :
+
 ``` sh
 	git submodule add git://github.com/padenot/vagg.git
 
 	cd vagg && make # builds static library, dynamic library and .o file.
 ```
+
 If you want to update to the latest revision, once again inside the root project
 directory :
+
 ``` sh
 	git submodule update
 ```
