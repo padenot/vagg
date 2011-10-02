@@ -5,9 +5,20 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <math.h>
+#include <errno.h>
+#include <string.h>
 
 #define VAGG_MACRO_BEG do {
 #define VAGG_MACRO_END } while(0);
+
+#define VAGG_SYSCALL(x)                                               \
+  VAGG_MACRO_BEG                                                      \
+  if(x == -1) {                                                       \
+  	VAGG_LOG(VAGG_LOG_FATAL, "#! SYSCALL FAILED : %s:%d:%s:%s",       \
+        __FILE__, __LINE__, #x, strerror(errno));                     \
+    abort();                                                          \
+  }                                                                   \
+  VAGG_MACRO_END
 
 #ifdef VAGG_DEBUG
   enum vagg_log_level {
@@ -196,6 +207,12 @@
     }
 		exit(0);
 	}
+
+  static size_t vagg_alloc_balance() VAGG_FUNUSED;
+  static size_t vagg_alloc_balance()
+  {
+    return vagg_alloc_count;
+  }
 
   #define vagg_set_exit_handler()                            \
     if(atexit(trace_exit_handler)) {                    \

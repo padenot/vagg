@@ -9,7 +9,7 @@ systematic. And it has pretty color output, too.
 ``` c
 /* Allow to disable warnings specific warnings, to encourage warning
  * reduction. */
-// This won't make the compiler issue a warning
+/* This won't make the compiler issue a warning */
 void unused(int i); VAGG_FUNUSED
 void unused(int VAGG_UNUSED(i)) {
 	printf("this is unused.\n");
@@ -40,13 +40,13 @@ vagg_bufeq(a1, 3, a2, 3, "should fail.");
 vagg_end();
 
 /* asserts */
-VAGG_POS(-1); // fail
-VAGG_NEG(1); // fail
-VAGG_POSI(0); // succeed
-VAGG_NEGI(1); // fail
-VAGG_BOUND(3, 0, 2); // fail
-VAGG_ZERO(0); // succeed
-VAGG_ASSERT(1 == 2, "This should fail");
+VAGG_POS(-1); /* failure */
+VAGG_NEG(1); /* failure */
+VAGG_POSI(0); /* succeed */
+VAGG_NEGI(1); /* failure */
+VAGG_BOUND(3, 0, 2); /* failure */
+VAGG_ZERO(0); /* succeed */
+VAGG_ASSERT(1 == 2, "This should failure");
 
 /* Light memory leak detection */
 /* This has to be called once to setup the handler called at the end of the
@@ -59,6 +59,14 @@ int_array[4] = 6;
 
 /* A deallocation is missing */
 VAGG_DELETE(int_array2);
+VAGG_LOG(VAGG_LOG_WARNING, "Memory chunk not deallocated : %zu", vagg_alloc_balance());
+
+/* syscalls checking */
+int fd;
+VAGG_SYSCALL((fd = open("vagg_tests.c", O_RDONLY))); /* success */
+VAGG_SYSCALL(close(fd)); /* success */
+VAGG_SYSCALL(close(-1)); /* failure */
+
 ```
 
 ## Compile time switches
