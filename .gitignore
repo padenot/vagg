@@ -14,3 +14,6 @@
 # Test executables
 tests/vagg_notest
 tests/vagg_test
+libvagg.so.1
+libvagg.so.1.0
+
