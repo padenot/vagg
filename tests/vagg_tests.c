@@ -20,8 +20,8 @@ int main() {
 
   /* test testing. */
   vagg_start(vagg_hide_sucess);
-  vagg_ok(0, "should succeed");
-  vagg_ok(1, "should fail");
+  vagg_ok(1, "should succeed");
+  vagg_ok(0, "should fail");
   vagg_range(3.1, 3.0, 0.2, "should succeed");
   vagg_range(3.1, 3.0, 0.01, "should fail");
   vagg_range(3.1, 3.0, 0.0, "should fail");
@@ -33,7 +33,7 @@ int main() {
   vagg_bufeq(a1, 3, a2, 3, "should fail.");
   vagg_end();
   vagg_start(vagg_display_success);
-  vagg_ok(0, "should succeed.");
+  vagg_ok(1, "should succeed.");
   vagg_end();
   VAGG_POS(-1); /* failure */
   VAGG_POS(1); /* success */
@@ -51,6 +51,7 @@ int main() {
   VAGG_BOUND(3, 0, 2); /* failure */
 	VAGG_ZERO(0); /* success */
 	VAGG_ZERO(1); /* failure */
+	vagg_end();
 
   /* test alloc counting */
 	vagg_set_exit_handler();

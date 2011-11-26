@@ -26,7 +26,7 @@ void vagg_start(enum vagg_show show_all) {
 
 void vagg_ok(int predicate, const char* msg) {
   test_index++;
-  if(!predicate) {
+  if(predicate) {
     success_count++;
     if (show_success) {
       success(msg);
