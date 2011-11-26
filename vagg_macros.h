@@ -60,7 +60,7 @@
           fprintf(stdout, "\t");                               \
         }                                                      \
         if (pthread_self() != 0) {                             \
-          fprintf(stdout, "[%ld] ", pthread_self());           \
+          fprintf(stdout, "[%lu] ", pthread_self());           \
         }                                                      \
         fprintf(stdout, __VA_ARGS__);                          \
         fprintf(stdout, "\n");                                 \
