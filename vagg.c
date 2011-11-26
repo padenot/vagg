@@ -9,11 +9,11 @@ static unsigned success_count = 0;
 static unsigned test_index = 0;
 static unsigned show_success = 0;
 
-static void failed(char* msg) {
+static void failed(const char* msg) {
     VAGG_LOG(VAGG_LOG_CRITICAL, "\ttest %d failed : %s", test_index, msg);
 }
 
-static void success(char* msg) {
+static void success(const char* msg) {
     VAGG_LOG(VAGG_LOG_OK, "\ttest %d succeeded : %s", test_index, msg);
 }
 
@@ -24,9 +24,9 @@ void vagg_start(enum vagg_show show_all) {
   VAGG_LOG(VAGG_LOG_DEBUG, "starting test suite.");
 }
 
-void vagg_ok(int predicate, char* msg) {
+void vagg_ok(int predicate, const char* msg) {
   test_index++;
-  if(!predicate) {
+  if(predicate) {
     success_count++;
     if (show_success) {
       success(msg);
@@ -36,7 +36,7 @@ void vagg_ok(int predicate, char* msg) {
   }
 }
 
-void vagg_range(double value, double ref, double threshold, char* msg) {
+void vagg_range(double value, double ref, double threshold, const char* msg) {
   test_index++;
   if (fabs(value - ref) <= threshold) {
     success_count++;
@@ -48,7 +48,7 @@ void vagg_range(double value, double ref, double threshold, char* msg) {
   }
 }
 
-void vagg_bufeq(const void* buf1, size_t buf1_len, const void* buf2, size_t buf2_len, char* msg) {
+void vagg_bufeq(const void* buf1, size_t buf1_len, const void* buf2, size_t buf2_len, const char* msg) {
   test_index++;
   if(buf1_len != buf2_len) {
     failed(msg);

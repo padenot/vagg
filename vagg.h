@@ -8,6 +8,10 @@ enum vagg_show {
   vagg_hide_sucess
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * Compile to noop if TEST is not #DEFINED
  */
@@ -24,7 +28,7 @@ void vagg_start(enum vagg_show show_all);
  * @param predicate A predicate that has to be true for the test to pass.
  * @param msg A message to display in case of failure.
  */
-void vagg_ok(int predicate, char* msg);
+void vagg_ok(int predicate, const char* msg);
 /**
  * @brief Test if a number is in a range.
  *
@@ -33,7 +37,7 @@ void vagg_ok(int predicate, char* msg);
  * @param threshold The treshold which is acceptable
  * @param msg A message to display in case of failure.
  */
-void vagg_range(double value, double ref, double threshold, char* msg);
+void vagg_range(double value, double ref, double threshold, const char* msg);
 /**
  * @brief Test buffer equality
  *
@@ -43,7 +47,7 @@ void vagg_range(double value, double ref, double threshold, char* msg);
  * @param buf2_len The length of the first buffer.
  * @param msg A message to display in case of failure.
  */
-void vagg_bufeq(const void* buf1, size_t buf1_len, const void* buf2, size_t buf2_len, char* msg);
+void vagg_bufeq(const void* buf1, size_t buf1_len, const void* buf2, size_t buf2_len, const char* msg);
 /**
  * @brief Ends the test suite and display the results.
  */
@@ -54,6 +58,10 @@ void vagg_end();
 #define vagg_range(...)
 #define vagg_ok(...)
 #define vagg_end()
+#endif
+
+#ifdef __cplusplus
+}
 #endif
 
 #endif /* VAGG_H */
