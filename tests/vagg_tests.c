@@ -7,7 +7,7 @@
 /* This won't make the compiler issue a warning */
 void unused(); VAGG_FUNUSED
 void unused(int VAGG_UNUSED(i)) {
-	printf("this is unused.\n");
+  printf("this is unused.\n");
 }
 
 int main() {
@@ -49,26 +49,28 @@ int main() {
   VAGG_POSI(0); /* success */
   VAGG_BOUND(1, 0, 2); /* success */
   VAGG_BOUND(3, 0, 2); /* failure */
-	VAGG_ZERO(0); /* success */
-	VAGG_ZERO(1); /* failure */
+  VAGG_ZERO(0); /* success */
+  VAGG_ZERO(1); /* failure */
 
   /* test alloc counting */
-	vagg_set_exit_handler();
+  vagg_set_exit_handler();
   int* int_array = VAGG_ALLOC(10*sizeof(int));
   int* int_array2 = VAGG_ALLOC(10*sizeof(int));
   int* int_array3 = VAGG_ALLOC(10*sizeof(int));
-	int_array[0]++;
-	int_array3[0]++;
+  int_array[0]++;
+  int_array3[0]++;
 
   VAGG_DELETE(int_array2);
   VAGG_LOG(VAGG_LOG_WARNING, "Memory chunk not deallocated : %zu", vagg_alloc_balance());
+
+  VAGG_DELETE(int_array);
+  VAGG_DELETE(int_array3);
 
   /* syscalls checking */
   int fd;
   VAGG_SYSCALL((fd = open("vagg_tests.c", O_RDONLY))); /* success */
   VAGG_SYSCALL(close(fd)); /* success */
-  VAGG_SYSCALL(close(-1)); /* failure */
-
+  VAGG_SYSCALL((fd = open("bogux.c", O_RDONLY))); /* failure */
 
   return 0;
 }
