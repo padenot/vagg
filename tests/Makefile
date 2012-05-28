@@ -2,7 +2,7 @@ CFLAGS=-Wall -Wextra -g
 FLAGS=${CFLAGS} -DVAGG_DEBUG -DVAGG_COUNT_ALLOC -DVAGG_PRINT_ALLOC -DVAGG_TEST
 
 all:
-	gcc -I ../ vagg_tests.c ../vagg.c ${CFLAGS} -o vagg_notest
+	gcc -E -I ../ vagg_tests.c ../vagg.c ${CFLAGS}
 	gcc -I ../ vagg_tests.c ../vagg.c ${FLAGS} -o vagg_test
 
 clean:
